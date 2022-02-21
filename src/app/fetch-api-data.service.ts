@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 // import statements
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://herokumyflixdb.herokuapp.com/';
@@ -29,12 +28,8 @@ export class FetchApiDataService {
   // POST for logging in a user. (no token so no headers)
   public loginUser(userDetails: any): Observable<any> {
     console.log(userDetails);
-    const response = this.http.post(apiUrl + 'login', userDetails);
-    return response.pipe(
-      // Response here should be the logged in user + the token generated at login
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
+    // Response here should be the logged in user + the token generated at login
+    return this.http.post(apiUrl + 'login', userDetails).pipe(catchError(this.handleError));
   }
 
   // GET all movies
@@ -107,7 +102,8 @@ export class FetchApiDataService {
   // ADD movie to a user's list of favorites
   public addFavourite(userName: string, movieID: any): Observable<any> {
     const token = localStorage.getItem('token');
-    const response = this.http.put(apiUrl + `users/${userName}/favoriteMovies/${movie._id}`, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
+    // /favoriteMovies/${movie._id} --> movieID
+    const response = this.http.put(apiUrl + `users/${userName}/favoriteMovies/${movieID}`, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
     return response.pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -137,6 +133,6 @@ export class FetchApiDataService {
     } else {
       console.error(`Error Status code ${error.status}, ` + `Error body is: ${error.error}`);
     }
-    return throwError('Something bad happened; please try again later.');
+    return throwError('Something is not working. Try again later.');
   }
 }

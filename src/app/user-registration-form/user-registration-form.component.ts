@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class UserRegistrationFormComponent implements OnInit {
-  userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  userData = { userName: '', password: '', email: '', Birthday: '' };
 
   // Passing these parameters as properties on each instance of the class
   constructor(

@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Update myProfile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <!-- ngModel directive used to bind the form input values entered by the user to the profileData object in the edit-profile-form component -->
+        <input matInput [(ngModel)]="profileData.userName" type="text" placeholder="Username" name="userName" required
+          matTooltip="Minimum 5 alphanumeric characters " matTooltipClass="validation"
+          aria-label="Username's input  with validation requirements">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="profileData.password" type="password" placeholder="Password" name="password"
+          required matTooltip="Minimum 8 characters" matTooltipClass="validation"
+          aria-label="Input for password with validation requirements">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="profileData.email" type="email" placeholder="Email" name="email" required
+          matTooltip="Must be a valid email address" matTooltipClass="validation"
+          aria-label="Email address with validation requirements">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="profileData.Birthday" type="date" placeholder="Birthday" name="Birthday">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- Event binding invokes the updateProfile function with the edit-profile-form component -->
+    <button mat-raised-button (click)="updateProfile()" color="link">Update</button>
+  </mat-card-actions>
+</mat-card>

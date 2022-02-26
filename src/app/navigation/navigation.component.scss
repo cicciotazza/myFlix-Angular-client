@@ -1,0 +1,74 @@
+.sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    min-width: 175px;
+    //width: 175px;
+  }
+
+  .hidden {
+    display: none;
+  }
+  
+  #main-toolbar {
+    position: fixed;
+    z-index: 1;
+  }
+  
+  .content {
+    z-index: 0;
+  }
+  
+
+  // Styles the toolbar so that the title is to the left and the nav buttons are to the right
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  mat-toolbar button {
+    //display: block;
+    //padding: 6px 24px;
+    //width: 100%;
+    //text-align: left;
+    //display: inline-block;
+    color: #fdffff;
+    background-color: #1a67a2;
+    font-size: 18px;
+    margin: 0.5rem;
+    border-radius: 10px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+
+.title {
+    color: #ff9d00;
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 1rem;
+    font-weight:800;
+} 
+
+#mobile-menu {
+    color: #ffffff;
+    font-size: 18px;
+  }
+  
+  .menu-icons {
+    color: #ffffff;
+  }
+  
+  .menu-buttons {
+    background-color: #ff9d00;;
+    border-width: thin;
+    position: absolute;
+    
+   //display: block;
+    //padding: 6px 24px;
+    //width: 100%;
+    //text-align: left;
+  } 
+
+  // space the buttons at the top
+  .nav-button {
+    margin: 0.5%;
+  }

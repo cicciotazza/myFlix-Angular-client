@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 // import statements
 import { catchError, map } from 'rxjs/operators';
+// Used to make the Api requests
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
-//Declaring the api url that will provide data for the client app
+// Url for the heroku hosted Api to which we will make our http requests
 const apiUrl = 'https://herokumyflixdb.herokuapp.com/';
 @Injectable({
   // Indicates that this service will be provided to the root of app and hence available to all components
@@ -19,7 +20,6 @@ export class FetchApiDataService {
   // POST or register a new user
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
-    // Post request to the user registration endpoint
     return this.http.post(apiUrl + 'users', userDetails).pipe(
       catchError(this.handleError)
     );
@@ -42,40 +42,11 @@ export class FetchApiDataService {
     );
   }
 
-  // GET a movie by title
-  public getOneMovie(title: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    const response = this.http.get(apiUrl + `movies/${title}` + title, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
-    return response.pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
-
-  // GET movie by genre
-  public getGenre(genreName: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    const response = this.http.get(apiUrl + `movies/genres/${genreName}` + genreName, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
-    return response.pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
-
-  // GET movie by director
-  public getDirector(Name: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    const response = this.http.get(apiUrl + `movies/directors/${Name}` + Name, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
-    return response.pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
 
   // GET user by username
   public getUser(userName: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const response = this.http.get(apiUrl + `users/${userName}` + userName, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
+    const response = this.http.get(apiUrl + `users/` + userName, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
     return response.pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -85,7 +56,8 @@ export class FetchApiDataService {
   // PUT to update the user's details
   public updateUser(userName: string, newDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
-    const response = this.http.put(apiUrl + `users/${userName}` + userName, newDetails, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
+    // users/${userName}
+    const response = this.http.put(apiUrl + `users/` + userName, newDetails, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
     return response.pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -95,15 +67,18 @@ export class FetchApiDataService {
   // DELETE user
   public deleteUser(user: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const response = this.http.delete(apiUrl + `users/${user}` + user, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
+    const response = this.http.delete(apiUrl + `users/` + user,
+      { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }), responseType: 'text' }
+    );
     return response.pipe(catchError(this.handleError));
   }
 
   // ADD movie to a user's list of favorites
   public addFavourite(userName: string, movieID: any): Observable<any> {
     const token = localStorage.getItem('token');
-    // /favoriteMovies/${movie._id} --> movieID
-    const response = this.http.put(apiUrl + `users/${userName}/favoriteMovies/${movieID}`, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
+    // Reaact users/${userName}/favoriteMovies/${movie._id}
+    // Postman /users/${userName}/favoriteMovies/${movieID}
+    const response = this.http.put(apiUrl + `users/${userName}/FavoriteMovies/${movieID}`, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
     return response.pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -131,7 +106,7 @@ export class FetchApiDataService {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
-      console.error(`Error Status code ${error.status}, ` + `Error body is: ${error.error}`);
+      console.error(`Error Status code ${error.status}, ` + `Error body is: ${JSON.stringify(error.error)}`);
     }
     return throwError('Something is not working. Try again later.');
   }

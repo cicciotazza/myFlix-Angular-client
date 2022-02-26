@@ -1,0 +1,97 @@
+// Sits outside the welcome-wrapper so it does not become a flex item
+.mat-toolbar {
+    color: #ff0000;
+    position: fixed;
+  }
+
+  #logo {
+    font-size: x-large;
+  }
+  
+// Places the main-page container in the center and fills the background space
+  .welcome-wrapper { 
+    background-color: #212121;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    background-image: url('../../assets/bg.jpg');
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+
+  .mat-raised-button {
+    color: #000000;
+    width: 250px;
+    height: 50px;
+    font-size: large;
+  }
+
+    // Provides an appearance consistent with other components and forms  
+    .card-border { 
+    background-color: #424242;
+    width: 325px;
+    height: 410px;
+  }
+
+    // Ensures the card moves with the border when the screen size changes
+    .mat-card {
+    position: relative; 
+    top: 25px;
+    left: 25px;
+    width: 240px;
+    height: 325px; 
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    color: #fdfdfd;
+  }
+
+   // An adjustment made to the default mat-card styles to improve the spacing
+   .mat-card>:first-child, 
+   .mat-card-content>:first-child {
+   margin-top: 20px;
+ }
+ 
+ .mat-card-header {
+   height: 40px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   text-align: center;
+   line-height: 30px;
+ }
+ 
+ .mat-card-title {
+   font-size: 25px;
+   font-weight: 500;
+   height: 30px;
+ }
+ 
+ .content-container {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   height: 170px;
+ }
+
+ .mat-card-content {
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+span {
+  color: #ff0000;
+  font-weight: bold;
+}
+  
+.mat-card-actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.mat-raised-button {
+  color: #ffffff;
+  width: 90px;
+  height: 40px;
+  font-size: medium;
+}

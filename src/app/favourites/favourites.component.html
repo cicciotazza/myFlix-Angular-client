@@ -1,0 +1,24 @@
+<!-- The ngFor directive is used to loop through the favourites array in the component -->
+<div class="movies-container">
+    <mat-card *ngFor="let favourite of favourites">
+        <mat-card-header>
+            <mat-card-title [ngStyle]="{'font-size.px': fontSizer(favourite.Title)}">{{favourite.Title}}
+            </mat-card-title>
+            <mat-card-subtitle>Directed by: {{favourite.Director.Name}}</mat-card-subtitle>
+        </mat-card-header>
+        <img src={{favourite.ImagePath}} alt={{favourite.Title}} />
+        <mat-card-actions>
+            <!-- Event binding invokes the functions to open the dialogs when buttons are clicked. Data inside the dialogs passed in as parameters to the functions -->
+            <button mat-button (click)="openSynopsisDialog(favourite.Description)" color="accent">Synopsis</button>
+            <button id="director" mat-button
+                (click)="openDirectorDialog(favourite.Director.Name, favourite.Director.Bio, favourite.Director.Birthday, favourite.Director.Death)"
+                color="accent">Director</button>
+            <button mat-button (click)="openGenreDialog(favourite.Genre.Name, favourite.Genre.Description)"
+                color="accent">Genre</button>
+            <button mat-icon-button (click)="deleteFavouriteMovie(favourite._id, favourite.Title)" color="warn"
+                aria-label="icon button with a heart icon">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

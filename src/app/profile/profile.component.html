@@ -1,0 +1,23 @@
+<div class="profile-container">
+    <mat-card>
+        <div class="card-border"></div>
+
+        <mat-card-header>
+            <mat-card-title>Profile</mat-card-title>
+        </mat-card-header>
+        <mat-icon aria-label="Person icon">person</mat-icon>
+        <div class="content-container">
+            <!-- String interpolation is used to output data from the class to the template -->
+            <mat-card-content><span>userName:</span> {{user.userName}}</mat-card-content>
+            <mat-card-content><span>password:</span> {{password}}</mat-card-content>
+            <mat-card-content><span>email:</span> {{user.email}}</mat-card-content>
+            <!-- Date pipe transforms the date returned from the db to a more user friendly display -->
+            <mat-card-content><span>Birthday:</span> {{user.Birthday | date}}</mat-card-content>
+        </div>
+        <mat-card-actions>
+            <!-- Event binding invokes the functions, opens the edit profile dialog and deletes the user respectively -->
+            <button mat-raised-button (click)="openEditProfileFormDialog()" color="primary">Edit</button>
+            <button mat-raised-button (click)="deleteProfile()" color="primary">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

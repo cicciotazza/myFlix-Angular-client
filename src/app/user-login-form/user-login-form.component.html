@@ -1,22 +1,20 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Log In</mat-card-title>
+        <mat-card-title>Log-in to myFlix Angular</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <form>
             <mat-form-field>
                 <!-- ngModel directive used to bind the form input values entered by the user to the loginData object in the login component -->
-                <input matInput [(ngModel)]="loginData.Username" type="text" placeholder="Username" name="Username"
-                    required>
+                <input matInput [(ngModel)]="loginData.userName" type="text" placeholder="Username" name="userName" required>
             </mat-form-field>
             <mat-form-field>
-                <input matInput [(ngModel)]="loginData.Password" type="password" placeholder="Password" name="Password"
-                    required>
+                <input matInput [(ngModel)]="loginData.password" type="password" placeholder="Password" name="password" required>
             </mat-form-field>
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <!-- Event binding used to invoke the userLogin function in the login component when the button is clicked -->
+        <!-- Event binding invokes the userLogin function in the login component when button is clicked -->
         <button mat-raised-button (click)="userLogin()" color="primary">Log In</button>
     </mat-card-actions>
 </mat-card>

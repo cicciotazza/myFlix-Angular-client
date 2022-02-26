@@ -1,0 +1,15 @@
+.mat-card {
+    color: #ffffff;
+  }
+  
+  .mat-raised-button {
+    color: #ffffff;
+} 
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: #ff0000; // Changes the colour that is otherwise applied when autofill is used
+// The next two rules change the background colour that is otherwise applied when autofill is used. 
+// There is no -webkit-background-color property so box-shadow is used instead which achieves the same result
+  box-shadow: none; // A standard box shadow must be set before setting a webkit-box-shadow
+  -webkit-box-shadow: 0 0 0px 1000px #424242 inset;  
+} 

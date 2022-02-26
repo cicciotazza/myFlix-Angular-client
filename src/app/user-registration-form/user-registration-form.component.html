@@ -1,20 +1,24 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Register</mat-card-title>
+        <mat-card-title>Registration</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <form>
             <mat-form-field>
-                <!-- ngModel directive used to bind the form input values entered by the user to the userData object in the registration component -->
-                <input matInput [(ngModel)]="userData.userName" type="text" placeholder="Username" name="Username"
-                    required>
+                <!-- ngModel directive binds the form input values to the userData object in the registration component -->
+                <input matInput [(ngModel)]="userData.userName" type="text" placeholder="Username" name="userName"
+                    required matTooltip="Minimum 5 characters alphanumeric" matTooltipClass="validation"
+                    aria-label="Username's input validation requirements">
             </mat-form-field>
             <mat-form-field>
-                <input matInput [(ngModel)]="userData.password" type="password" placeholder="Password" name="Password"
-                    required>
+                <input matInput [(ngModel)]="userData.password" type="password" placeholder="Password" name="password"
+                    required matTooltip="Minimum 8 characters" matTooltipClass="validation"
+                    aria-label="Password with validation requirements">
             </mat-form-field>
             <mat-form-field>
-                <input matInput [(ngModel)]="userData.email" type="email" placeholder="Email" name="Email" required>
+                <input matInput [(ngModel)]="userData.email" type="email" placeholder="Email" name="email" required
+                    matTooltip="Must be valid email address" matTooltipClass="validation"
+                    aria-label="email with validation requirements">
             </mat-form-field>
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="Birthday" name="Birthday">
@@ -22,7 +26,7 @@
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <!-- Event binding used to invoke the registerUser function in the registration component when the button is clicked -->
-        <button mat-raised-button (click)="registerUser()" color="primary">Register</button>
+        <!-- Event binding invokes the registerUser function in the registration component when clicking the button -->
+        <button mat-raised-button (click)="registerUser()" color="link">Register</button>
     </mat-card-actions>
 </mat-card>

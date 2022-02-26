@@ -1,1 +1,33 @@
-<p>welcome-page works!</p>
+<mat-toolbar>
+    <span id="logo">myFlix-Angular-app</span>
+</mat-toolbar>
+
+<div class="welcome-wrapper">
+    <div class="card-border">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Welcome to myFlix-Angular</mat-card-title>
+            </mat-card-header>
+            <div class="content-container">
+                <mat-card-content>
+                    Enjoy your <span> TV-SHOWS </span>, see details about directors, genres and more.
+                    <p>
+                        <mat-icon>movie</mat-icon>
+                        <mat-icon>videocam</mat-icon>
+                    </p>
+
+                </mat-card-content>
+            </div>
+            <mat-card-actions>
+                <!-- event binding used to invoke the respective functions in the welcome-page component when the buttons are clicked -->
+                <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;"
+                    color="basic">
+                    Register
+                </button>
+                <button mat-raised-button (click)="openUserLoginDialog()" style="margin-right: 10px;" color="basic">
+                    Login
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

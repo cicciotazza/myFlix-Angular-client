@@ -1,0 +1,53 @@
+<mat-sidenav-container class="sidenav-container">
+    <!-- ref used for applying toggle method to open the sidenav -->
+    <mat-sidenav #nav class="sidenav" [ngClass]="{hidden: !(isHandset | async)!.matches}" [mode]="'over'">
+        <mat-toolbar id="mobile-menu" color="primary">Menu</mat-toolbar>
+        <mat-nav-list>
+            <button type="button" class="menu-buttons" mat-list-item aria-label="Click button to navigate to movies"
+                (click)="changeComponentDisplayed('movies')">
+                <mat-icon class="menu-icons" aria-label="Video camera icon">videocam</mat-icon>
+            </button>
+            <button type="button" class="menu-buttons" mat-list-item aria-label="Click button to navigate to profile"
+                (click)="changeComponentDisplayed('profile')">
+                <mat-icon class="menu-icons" aria-label="Person icon">person</mat-icon>
+            </button>
+            <button type="button" class="menu-buttons" mat-list-item
+                aria-label="Click button to navigate to favourite movies"
+                (click)="changeComponentDisplayed('favourites')">
+                <mat-icon class="menu-icons" aria-label="Heart icon">favorite</mat-icon>
+            </button>
+            <button type="button" class="menu-buttons" mat-list-item aria-label="Click button to log out of myFlix"
+                (click)="logout()">
+                <mat-icon class="menu-icons" aria-label="Logout icon">logout</mat-icon>
+            </button>
+        </mat-nav-list>
+    </mat-sidenav>
+    <!-- ngIf directive used to conditionally render the sidenav menu button in the toolbar at mobile screen sizes and nav items for other screen sizes -->
+    <!-- ngSwitch directive used to determine which component to display in the view based on the nav item selected by the user -->
+    <mat-sidenav-content>
+        <mat-toolbar id="main-toolbar" color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button *ngIf="(isHandset | async)!.matches"
+                (click)="nav.toggle()">
+                <mat-icon aria-label="Sidenav toggle icon">menu</mat-icon>
+            </button>
+            <span class="title">myFlix-Angular-app</span>
+            <span class="spacer"></span>
+            <!-- ngIf  to render nav items on main toolbar when screen size is larger than mobile -->
+            <!-- Event binding invokes changeComponentDisplayed in the component when a nav item is clicked. The value of the component that the user wishes to see displayed is passed as the argument -->
+            <button *ngIf="!(isHandset | async)!.matches" mat-flat-button
+                (click)="changeComponentDisplayed('movies')">Movies</button>
+            <button *ngIf="!(isHandset | async)!.matches" mat-flat-button
+                (click)="changeComponentDisplayed('profile')">Profile</button>
+            <button *ngIf="!(isHandset | async)!.matches" mat-flat-button
+                (click)="changeComponentDisplayed('favourites')">Favourites</button>
+            <button *ngIf="!(isHandset | async)!.matches" mat-flat-button id="logout" (click)="logout()">LogOut</button>
+        </mat-toolbar>
+        <!-- ngSwitch  to determine which component to display in the view based on the nav item clicked by the user. 
+            By clicking a nav item, the value of "componentDisplayed" is updated in the component, thereby updating the switch case -->
+        <div [ngSwitch]="componentDisplayed" class="content">
+            <app-movie-card *ngSwitchCase="'movies'"></app-movie-card>
+            <app-profile *ngSwitchCase="'profile'"></app-profile>
+            <app-favourites *ngSwitchCase="'favourites'"></app-favourites>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

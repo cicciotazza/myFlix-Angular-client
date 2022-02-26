@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// Create a reference to the dialog that we open in the app component so it close itsfelf if registration is successful
+// create a reference to the dialog opened in the welcome-page component, so can be closed if the registration is successful
 import { MatDialogRef } from '@angular/material/dialog';
-// Use the userRegistration function created on this service to register a user in the registerUser function
+// userRegistration function created on this service to register a user in the registerUser function
 import { FetchApiDataService } from '../fetch-api-data.service';
-// Used to create pop-up notifications to the user
+// create pop-up notifications to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -13,9 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class UserRegistrationFormComponent implements OnInit {
+  // userData  takes values by using the ngModel directive on form inputs in the user-registration template
   userData = { userName: '', password: '', email: '', Birthday: '' };
 
-  // Passing these parameters as properties on each instance of the class
+  // Pass the classes as parameters to the constructor, sets them as properties on the class that we can then access
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
@@ -24,21 +25,18 @@ export class UserRegistrationFormComponent implements OnInit {
   ngOnInit(): void { }
 
   registerUser(): void {
-    // invokes the userRegistration function in our Api service, passing the userData
+    // userRegistration function in the Api service, passing the userData
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
-      // Logic for a successful user registration goes here
-      // Closes the dialog opened when the user clicks registration button in the app component
-      this.dialogRef.close();
-      console.log(result);
+      // Closes the dialog opened in the welcome-page
       // Message pops up to confirm successful registration
-      this.snackBar.open('Registration completed!', 'OK', {
-        duration: 5000
-      });
+      this.snackBar.open(`Welcome to myFlix ${this.userData.userName}! Log in to to use the app.`, 'Cool!', 
+        { duration: 4000, panelClass: 'snack-style' }
+      );
     }, (result) => {
       console.log(result);
-      this.snackBar.open(result, 'Sorry, try a different username', {
-        duration: 4000
-      });
-    });
-  }
+      this.snackBar.open("Sorry but something went wrong. Please try a different username", 'Ok',
+      { duration: 4000, panelClass: 'snack-style' }
+    );
+  });
+}
 }

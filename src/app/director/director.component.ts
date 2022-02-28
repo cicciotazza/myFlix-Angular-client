@@ -10,6 +10,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DirectorComponent implements OnInit {
   // Data passed to the dialog, injected into the component can be used in the template
   constructor(@Inject(MAT_DIALOG_DATA) public data: { Name: string, Bio: string, Birthday: string, Death: string }) { }
-  
-  ngOnInit(): void {}
+
+  ngOnInit(): void { }
 }

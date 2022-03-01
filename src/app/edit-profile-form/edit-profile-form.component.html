@@ -5,7 +5,8 @@
   <mat-card-content>
     <form>
       <mat-form-field>
-        <!-- ngModel directive used to bind the form input values entered by the user to the profileData object in the edit-profile-form component -->
+        <!-- ngModel directive used to bind the form input values entered by the user 
+          to the profileData object in the edit-profile-form component -->
         <input matInput [(ngModel)]="profileData.userName" type="text" placeholder="Username" name="userName" required
           matTooltip="Minimum 5 alphanumeric characters " matTooltipClass="validation"
           aria-label="Username's input  with validation requirements">

@@ -1,12 +1,3 @@
-/**
- * The AppModule is used to import then declare all of the components that will be used in the app, 
- * as well as to import all of the modules that will be used. The AppComponent is bootstrapped when the
- * module is bootstrapped, and thereby gets access to the module contents. By virtue of being children of
- * the AppComponent (which is the root component), all the other components get access to exported 
- * declarables of the imported modules in the AppModule too, as well as to the other child components.
- * @module AppModule
- */
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';

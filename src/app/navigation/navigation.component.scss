@@ -13,20 +13,18 @@
   
   #main-toolbar {
     position: fixed;
-    // Prevents the content from scrolling on top of the toolbar
     z-index: 1;
   }
   
   .content {
-  // Prevents the content from scrolling on top of the toolbar
     z-index: 0;
   }
   
- /* Styles the toolbar layout so that the title is to the left and the nav buttons are to the right
-  by creating a space that takes up all available space between them. */
-.spacer { 
-  flex: 1 1 auto;
-}
+
+  // Styles the toolbar so that the title is to the left and the nav buttons are to the right
+  .spacer {
+    flex: 1 1 auto;
+  }
   
   mat-toolbar button {
     //display: block;
@@ -35,7 +33,6 @@
     //text-align: left;
     //display: inline-block;
     color: #fdffff;
-    // Removes button appearance by blending the outline in to the toolbar background
     background-color: #1a67a2;
     font-size: 18px;
     margin: 0.5rem;

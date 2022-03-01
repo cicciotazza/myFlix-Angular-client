@@ -1,24 +1,10 @@
 .mat-card {
     color: #ffffff;
     text-align: center;
+
   }
 
+  
   .mat-raised-button {
     color: #000000;
   } 
-
- /**
- * Class to change the default styles applied to input values populated
- * on the autofileed form that uses black text on a white background
- */
-input:-webkit-autofill {
-  // New colour that is otherwise applied when autofill is used
-  -webkit-text-fill-color: yellow;
-  // A standard box shadow must be set before setting a webkit-box-shadow 
-  box-shadow: none;       
-  /**
-   * -webkit-box-shadow is manipulated to change the background colour because there is no
-   * -webkit-background-color property available and this achieves the same result.
-   */
-  -webkit-box-shadow: 0 0 0px 1000px #424242 inset;   
-}

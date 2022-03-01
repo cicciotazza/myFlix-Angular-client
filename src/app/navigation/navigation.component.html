@@ -1,7 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-    <!-- #nav reference used when applying the toggle method to open the sidenav using the button in the
-     main toolbar. ngClass directive used to apply the "hidden" class to the sidenav when the observable
-    isHandset matches Handset ie when the screen size is mobile -->
+    <!-- ref used for applying toggle method to open the sidenav -->
     <mat-sidenav #nav class="sidenav" [ngClass]="{hidden: !(isHandset | async)!.matches}" [mode]="'over'">
         <mat-toolbar id="mobile-menu" color="primary">Menu</mat-toolbar>
         <mat-nav-list>

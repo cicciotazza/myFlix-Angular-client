@@ -28,28 +28,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
-  "typedocOptions": {
-    "entryPoints": 
-    ["src/app/fetch-api-data.service.ts", 
-      "src/app/fetch-api-data.service.spec.ts", 
-      "src/app/app.module.ts", 	
-      "src/app/app.module.ts",
-      "src/app/app.component.ts",
-      "src/app/app.component.spec.ts",
-      
-      "src/app/director/director.component.ts",
-      "src/app/edit-profile/edit-profile-form.component.ts",
-      "src/app/favourites/favourites.component.ts",
-      "src/app/genre/genre.component.ts",
-      "src/app/movie-card/movie-card.component.ts",
-      "src/app/navigation/navigation.component.ts",
-      "src/app/profile/profile.component.ts",
-      "src/app/synopsis/synopsis.component.ts",
-      "src/app/user-login/user-login-form.component.ts",
-      "src/app/user-registration/user-registration-form.component.ts",
-      "src/app/welcome-page.component.ts",
-      ],
-    "out": "docsX"
   }
 }

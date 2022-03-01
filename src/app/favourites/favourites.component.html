@@ -1,8 +1,7 @@
+<!-- The ngFor directive is used to loop through the favourites array in the component -->
 <div class="movies-container">
-<!-- The ngFor directive is used to loop through the movies array in the component. A mat-card is then rendered for each movie -->
     <mat-card *ngFor="let favourite of favourites">
         <mat-card-header>
-            <!-- The ngStyle directive has been used to change the font size for one movie with a long title that was affecting the layout -->
             <mat-card-title [ngStyle]="{'font-size.px': fontSizer(favourite.Title)}">{{favourite.Title}}
             </mat-card-title>
             <mat-card-subtitle>Directed by: {{favourite.Director.Name}}</mat-card-subtitle>
@@ -16,7 +15,6 @@
                 color="accent">Director</button>
             <button mat-button (click)="openGenreDialog(favourite.Genre.Name, favourite.Genre.Description)"
                 color="accent">Genre</button>
-            <!-- Event binding used to invoke the function to delete a movie from favourites when the icon button is clicked. The movie id and title are passed as the arguments -->   
             <button mat-icon-button (click)="deleteFavouriteMovie(favourite._id, favourite.Title)" color="warn"
                 aria-label="icon button with a heart icon">
                 <mat-icon>favorite</mat-icon>

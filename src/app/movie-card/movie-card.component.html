@@ -1,6 +1,5 @@
 <!-- The ngFor directive is used to loop through the movies array in the component. A mat-card is then rendered for each movie -->
 <div class="movies-container">
-  <!-- The ngFor directive is used to loop through the movies array in the component. A mat-card is then rendered for each movie -->
   <mat-card class="mat-card" *ngFor="let movie of movies">
     <mat-card-header class="mat-card-header">
       <!-- The ngStyle directive has been used to change the font size for one movie with a long title that was affecting the layout -->
@@ -9,18 +8,20 @@
     </mat-card-header>
     <img src={{movie.ImagePath}} alt={{movie.Title}} />
     <mat-card-actions>
-      <!-- Event binding used to invoke the functions to open the dialogs when the buttons are clicked. The data needed inside the dialogs is passed in as arguments to the functions -->
+      <!-- Event binding used to invoke the specified functions on the movie-card component when the buttons are clicked. Data required by these functions is passed in as parameters -->
       <button mat-button (click)="openSynopsisDialog(movie.Title, movie.Description)" color="accent">Synopsis</button>
       <button id="director" mat-button
         (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio, movie.Director.Birthday, movie.Director.Death)"
         color="accent">Director</button>
       <button mat-button (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
         color="accent">Genre</button>
-      <!-- The 'color' property is bound to an expression which is a function that returns either the color value 'warn' or 'accent' depending on whether the movie is included in the users favourites or not -->
-      <button mat-icon-button (click)="toggleFavourite(movie._id, movie.Title)" [color]="toggleHeart(movie._id)"
-        aria-label="Click button to add or remove movie from favourites">
-        <mat-icon aria-label="heart icon">favorite</mat-icon>
-      </button>
+      <!-- The 'color' property is bound to an expression which is a function that returns either the color value 'warn' or 'accent' depending on whether the movie is included in the users favourites -->
+      
+      <!--NEW BUTTON ADDED -->
+  <button mat-icon-button (click)="toggleFavourite(movie._id, movie.Title)"> <mat-icon *ngIf="!isFavoriteMovie(movie._id)" class="fav-icon">
+          favorite_border </mat-icon> <mat-icon *ngIf="isFavoriteMovie(movie._id)" class="fav-icon">  favorite </mat-icon>
+      </button> 
+
     </mat-card-actions>
   </mat-card>
 </div>

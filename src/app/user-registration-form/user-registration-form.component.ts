@@ -1,15 +1,9 @@
-/** 
- * The UserRegistrationFormComponent is used to render a mat dialog containing a form where the
- * user can complete and submit a profile to register for myFlix. 
- * @module UserRegistrationFormComponent
- */
-
 import { Component, OnInit } from '@angular/core';
-// To create a reference to the dialog opened in the welcome-page component, so can be closed if the registration is successful
+// create a reference to the dialog opened in the welcome-page component, so can be closed if the registration is successful
 import { MatDialogRef } from '@angular/material/dialog';
-// To access the userRegistration function created on this service
+// userRegistration function created on this service to register a user in the registerUser function
 import { FetchApiDataService } from '../fetch-api-data.service';
-// To create pop-up notifications to the user
+// create pop-up notifications to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -29,13 +23,6 @@ export class UserRegistrationFormComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   ngOnInit(): void { }
-  /**
-   * Invokes the userRegistration function on the fetchApiData service, with the userData from the form,
-   * Invokes the userRegistration method on the fetchApiData service, with the userData from the form,
-   * in order to register the user. Successful registration closes the form and a popup is displayed 
-   * inviting the user to log in. If unsuccessful, a popup message will ask the user to try again with a 
-   * different username.
-   */
 
   registerUser(): void {
     // userRegistration function in the Api service, passing the userData

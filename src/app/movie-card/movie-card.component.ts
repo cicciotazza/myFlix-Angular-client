@@ -39,13 +39,19 @@ export class MovieCardComponent implements OnInit {
   getFavoriteMovies(): void {
     this.fetchApiData.getUser(this.userName!).subscribe((resp: any) => { this.favorites = resp.FavoriteMovies });
   }
+
   // Checks to see if a movie id is included within the array of IDs of the user's fav movies and returns a 
   // specific theme colour depending on whether the result is true or false. The return value becomes the 
   // value of the color attribute for the icon button in the template
-  isFavoriteMovie(movieID: string): string {
-    let movieIds = this.favourites.map(favourite => { return favourite._id });
-    return movieIds.includes(movieID) ? 'warn' : 'accent';
+
+  //isFavoriteMovie(movieID: string): string {
+  //let movieIds = this.favourites.map(favourite => { return favourite._id });
+  //return movieIds.includes(movieID) ? 'warn' : 'accent';
+  //}
+  isFavoriteMovie(movieID: string): Boolean {
+    return this.favourites.some((id) => id === movieID);
   }
+
   //  Adds or removes a movie from the user's favourites depending on whether the movie is currently included within their favourites or not 
   toggleFavourite(movieID: string, Title: string): void {
     let movieIds = this.favourites.map(favourite => { return favourite._id });
@@ -55,6 +61,7 @@ export class MovieCardComponent implements OnInit {
       this.addMovieToFavourites(movieID, Title);
     }
   }
+
   // Dialog to display the genre component, passing it the data it needs within the data object
   openGenreDialog(Name: string, Description: string): void {
     this.dialog.open(GenreComponent, {

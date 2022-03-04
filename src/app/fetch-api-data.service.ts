@@ -7,6 +7,12 @@ import { Observable, throwError } from 'rxjs';
 
 // Url for the heroku hosted Api to which we will make our http requests
 const apiUrl = 'https://herokumyflixdb.herokuapp.com/';
+// Get token from local storage for requests
+const token = localStorage.getItem('token');
+// Get username from localStorage for URLs
+const userName = localStorage.getItem('userName');
+
+
 @Injectable({
   // Indicates that this service will be provided to the root of app and hence available to all components
   providedIn: 'root'
@@ -42,7 +48,6 @@ export class FetchApiDataService {
     );
   }
 
-
   // GET user by username
   public getUser(userName: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -73,13 +78,32 @@ export class FetchApiDataService {
     return response.pipe(catchError(this.handleError));
   }
 
-  // ADD movie to a user's list of favorites
-  public addFavourite(userName: string, movieID: any): Observable<any> {
+  // ---GET FAVOURITES MOVIES---
+  getFavoriteMovies(): Observable<any> {
     const token = localStorage.getItem('token');
-    // Reaact  /users/${userName}/favoriteMovies/${movie._id}
-    // Postman /users/${userName}/favoriteMovies/${movieID}
-    const response = this.http.put(apiUrl + `users/${userName}/FavoriteMovie/${movieID}`, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
-    return response.pipe(
+    const userName = localStorage.getItem('userName');
+    return this.http.get(apiUrl + `user/${userName}`, {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        })
+    }).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+
+  // Reaact  /users/${userName}/favoriteMovies/${movie._id}
+  // Postman /users/${userName}/favoriteMovies/${movieID}
+  // ADD to favorites
+  public addFavourite(userName: string, movieID: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.post(apiUrl + `/users/${userName}/favoriteMovies/${movieID}`, null, {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );

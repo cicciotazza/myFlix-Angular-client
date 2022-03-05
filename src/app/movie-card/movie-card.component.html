@@ -18,10 +18,11 @@
       <!-- The 'color' property is bound to an expression which is a function that returns either the color value 'warn' or 'accent' depending on whether the movie is included in the users favourites -->
 
       <!--NEW BUTTON ADDED -->
-      <button mat-icon-button (click)="toggleFavourite(movie._id, movie.Title)">
+      <button mat-icon-button (click)="toggleFavorite(movie._id, movie.Title)">
         <mat-icon *ngIf="!isFavoriteMovie(movie._id)" class="fav-icon">
           favorite_border </mat-icon>
-        <mat-icon *ngIf="isFavoriteMovie(movie._id)" class="fav-icon"> favorite </mat-icon>
+        <mat-icon *ngIf="isFavoriteMovie(movie._id)" class="fav-icon"> 
+          favorite </mat-icon>
       </button>
 
     </mat-card-actions>

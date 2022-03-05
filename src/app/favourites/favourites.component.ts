@@ -50,8 +50,8 @@ export class FavouritesComponent implements OnInit {
     });
   }
 
-  deleteFavouriteMovie(movieID: string, title: string): void {
-    this.fetchApiData.deleteFavourite(this.userName!, movieID).subscribe((resp: any) => {
+  deleteFavoriteMovie(movieID: string, title: string): void {
+    this.fetchApiData.deleteFavorite(this.userName!, movieID).subscribe((resp: any) => {
       this.favourites = resp;
       //users/${userName}/movies/${movieID}
       this.snackBar.open(`${title} removed from favourites!`, 'Ok', { duration: 4000, panelClass: 'snack-style' });

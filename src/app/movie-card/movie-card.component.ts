@@ -16,7 +16,6 @@ export class MovieCardComponent implements OnInit {
   // userName needed to make the requests to the Api endpoints
   userName = localStorage.getItem('user');
   movies: any[] = [];
-  favourites: any[] = [];
   favorites: any[] = [];
 
 
@@ -43,22 +42,32 @@ export class MovieCardComponent implements OnInit {
   // Checks to see if a movie id is included within the array of IDs of the user's fav movies and returns a 
   // specific theme colour depending on whether the result is true or false. The return value becomes the 
   // value of the color attribute for the icon button in the template
-
-  //isFavoriteMovie(movieID: string): string {
-  //let movieIds = this.favourites.map(favourite => { return favourite._id });
-  //return movieIds.includes(movieID) ? 'warn' : 'accent';
-  //}
-  isFavoriteMovie(movieID: string): Boolean {
-    return this.favourites.some((id) => id === movieID);
+  //Alternative 1
+  /*
+  isFavoriteMovie(movieID: string): string {
+  let movieIds = this.favorites.map(favorite => { return favorite._id });
+  return movieIds.includes(movieID) ? 'warn' : 'accent';
   }
+  */
+  // Alternative 2
+  /*  
+  isFavoriteMovie(movieID: string): Boolean {
+  return this.favorites.some((id) => id === movieID);
+  } 
+  */
+  //Alternative 3
+   isFavoriteMovie(movieID: string): boolean {
+    return this.favorites.some((movie) => movie._id === movieID);
+  }
+  
 
   //  Adds or removes a movie from the user's favourites depending on whether the movie is currently included within their favourites or not 
-  toggleFavourite(movieID: string, Title: string): void {
-    let movieIds = this.favourites.map(favourite => { return favourite._id });
+  toggleFavorite(movieID: string, Title: string): void {
+    let movieIds = this.favorites.map(favorite => { return favorite._id });
     if (movieIds.includes(movieID)) {
-      this.deleteMovieFromFavourites(movieID, Title);
+      this.deleteMovieFromFavorites(movieID, Title);
     } else {
-      this.addMovieToFavourites(movieID, Title);
+      this.addMovieToFavorites(movieID, Title);
     }
   }
 
@@ -84,29 +93,29 @@ export class MovieCardComponent implements OnInit {
     });
   }
   // Adds the selected movie to the user's favourites
-  addMovieToFavourites(movieID: string, title: string): void {
-    this.fetchApiData.addFavourite(this.userName!, movieID).subscribe((resp: any) => {
-      this.favourites = resp;
-      this.snackBar.open(`${title} has been added to your favourites!`, 'Cool!',
+  addMovieToFavorites(movieID: string, title: string): void {
+    this.fetchApiData.addFavorite(this.userName!, movieID).subscribe((resp: any) => {
+      this.favorites = resp;
+      this.snackBar.open(`${title} has been added to your favorites!`, 'Cool!',
         { duration: 4000, panelClass: 'snack-style' }
       );
     }, (result) => {
       console.log(result);
-      this.snackBar.open(`Hmm, we couldn't add ${title} to favourites. Please try again`, 'Ok',
+      this.snackBar.open(`Hmm, we couldn't add ${title} to favorites. Please try again`, 'Ok',
         { duration: 4000, panelClass: 'snack-style' }
       );
     });
   }
-  // Deletes the selected movie from the user's favourites
-  deleteMovieFromFavourites(movieID: string, title: string): void {
-    this.fetchApiData.deleteFavourite(this.userName!, movieID).subscribe((resp: any) => {
-      this.favourites = resp;
-      this.snackBar.open(`${title} has been removed from your favourites!`, 'Ok',
+  // Deletes the selected movie from the user's favorites
+  deleteMovieFromFavorites(movieID: string, title: string): void {
+    this.fetchApiData.deleteFavorite(this.userName!, movieID).subscribe((resp: any) => {
+      this.favorites = resp;
+      this.snackBar.open(`${title} has been removed from your favorites!`, 'Ok',
         { duration: 4000, panelClass: 'snack-style' }
       );
     }, (result) => {
       console.log(result);
-      this.snackBar.open(`Hmm, we couldn't unfavourite ${title}. Please try again`, 'Ok',
+      this.snackBar.open(`Hmm, we couldn't unfavorite ${title}. Please try again`, 'Ok',
         { duration: 4000, panelClass: 'snack-style' }
       );
     });

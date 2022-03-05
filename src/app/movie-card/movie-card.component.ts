@@ -55,11 +55,11 @@ export class MovieCardComponent implements OnInit {
   return this.favorites.some((id) => id === movieID);
   } 
   */
+ 
   //Alternative 3
-   isFavoriteMovie(movieID: string): boolean {
+  isFavoriteMovie(movieID: string): boolean {
     return this.favorites.some((movie) => movie._id === movieID);
   }
-  
 
   //  Adds or removes a movie from the user's favourites depending on whether the movie is currently included within their favourites or not 
   toggleFavorite(movieID: string, Title: string): void {
@@ -95,7 +95,7 @@ export class MovieCardComponent implements OnInit {
   // Adds the selected movie to the user's favourites
   addMovieToFavorites(movieID: string, title: string): void {
     this.fetchApiData.addFavorite(this.userName!, movieID).subscribe((resp: any) => {
-      this.favorites = resp;
+      this.favorites = resp.FavoriteMovies;
       this.snackBar.open(`${title} has been added to your favorites!`, 'Cool!',
         { duration: 4000, panelClass: 'snack-style' }
       );
@@ -109,7 +109,7 @@ export class MovieCardComponent implements OnInit {
   // Deletes the selected movie from the user's favorites
   deleteMovieFromFavorites(movieID: string, title: string): void {
     this.fetchApiData.deleteFavorite(this.userName!, movieID).subscribe((resp: any) => {
-      this.favorites = resp;
+      this.favorites = resp.FavoriteMovies;
       this.snackBar.open(`${title} has been removed from your favorites!`, 'Ok',
         { duration: 4000, panelClass: 'snack-style' }
       );

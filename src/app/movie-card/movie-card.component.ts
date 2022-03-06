@@ -18,7 +18,6 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   favorites: string[] = [];
 
-
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -44,21 +43,6 @@ export class MovieCardComponent implements OnInit {
   // Checks to see if a movie id is included within the array of IDs of the user's fav movies and returns a 
   // specific theme colour depending on whether the result is true or false. The return value becomes the 
   // value of the color attribute for the icon button in the template
-  //Alternative 1
-  /*
-  isFavoriteMovie(movieID: string): string {
-  let movieIds = this.favorites.map(favorite => { return favorite._id });
-  return movieIds.includes(movieID) ? 'warn' : 'accent';
-  }
-  */
-  // Alternative 2
-  /*  
-  isFavoriteMovie(movieID: string): Boolean {
-  return this.favorites.some((id) => id === movieID);
-  } 
-  */
- 
-  //Alternative 3
   isFavoriteMovie(movieID: string): boolean {
     return this.favorites.some((movie: string) => movie === movieID);
   }
@@ -79,6 +63,7 @@ export class MovieCardComponent implements OnInit {
       width: '250px'
     });
   }
+
   // Dialog to display the director component, passing it the data it needs within the data object
   openDirectorDialog(Name: string, Bio: string, Birthday: string, Death: string): void {
     this.dialog.open(DirectorComponent, {
@@ -86,6 +71,7 @@ export class MovieCardComponent implements OnInit {
       width: '250px'
     });
   }
+
   // Dialog to display the synopsis component, passing it the data it needs within the data object
   openSynopsisDialog(Title: string, Description: string): void {
     this.dialog.open(SynopsisComponent, {
@@ -93,6 +79,7 @@ export class MovieCardComponent implements OnInit {
       width: '250px'
     });
   }
+
   // Adds the selected movie to the user's favourites
   addMovieToFavorites(movieID: string, title: string): void {
     this.fetchApiData.addFavorite(this.userName!, movieID).subscribe((resp: any) => {
@@ -107,6 +94,7 @@ export class MovieCardComponent implements OnInit {
       );
     });
   }
+
   // Deletes the selected movie from the user's favorites
   deleteMovieFromFavorites(movieID: string, title: string): void {
     this.fetchApiData.deleteFavorite(this.userName!, movieID).subscribe((resp: any) => {
@@ -121,6 +109,7 @@ export class MovieCardComponent implements OnInit {
       );
     });
   }
+  
   // This function is purely to adjust the font on one movie with a long title that is affecting the layout
   // For a larger movies dataset where multiple movies may have longer titles this could be refactored to use the movieTitle length
   fontSizer(movieTitle: string): number {

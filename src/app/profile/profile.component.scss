@@ -13,7 +13,7 @@
     height: 325px; 
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
     padding-right: 0px;
-    color: #ffa600;
+    color: #ff8800;
   }
   
   // This improves the appearance of the component on the page, making it look similar to the dialogs that include forms
@@ -48,7 +48,7 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    color: #fb4040;
+    color: #1a67a2;
   }
 
   .content-container {
@@ -57,6 +57,8 @@
     flex-wrap: wrap;
     height: 170px;
     margin-left: 10px;
+    text-shadow: 0 0 2px rgb(0, 0, 0);
+
   }
   
   

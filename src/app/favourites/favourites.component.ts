@@ -5,6 +5,7 @@ import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { map, zipWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-favourites',
@@ -26,12 +27,18 @@ export class FavouritesComponent implements OnInit {
   ngOnInit(): void { this.getFavouriteMovies() }
 
   getFavouriteMovies(): void {
-    this.fetchApiData.getUser(this.userName!).subscribe((resp: any) => { this.favourites = resp.FavoriteMovies });
+    this.fetchApiData.getUser(this.userName!)
+      .pipe(
+        map((u: any) => u.FavoriteMovies),
+        zipWith(this.fetchApiData.getAllMovies()),
+        map(([ids, movies]) => movies.filter((m: any) => ids.includes(m._id)))
+      )
+      .subscribe((resp: any) => { this.favourites = resp });
   }
 
-  openGenreDialog(name: string, description: string): void {
+  openGenreDialog(name: string, Description: string): void {
     this.dialog.open(GenreComponent, {
-      data: { Name: name, Description: description },
+      data: { Name: name, Description: Description },
       width: '280px'
     });
   }
@@ -43,16 +50,16 @@ export class FavouritesComponent implements OnInit {
     });
   }
 
-  openSynopsisDialog(description: string): void {
+  openSynopsisDialog(Description: string): void {
     this.dialog.open(SynopsisComponent, {
-      data: { description: description },
+      data: { Description: Description },
       width: '280px'
     });
   }
 
   deleteFavoriteMovie(movieID: string, title: string): void {
     this.fetchApiData.deleteFavorite(this.userName!, movieID).subscribe((resp: any) => {
-      this.favourites = resp.FavoriteMovies;
+      this.favourites.filter((m: any) => m._id !== movieID);
       //users/${userName}/movies/${movieID}
       this.snackBar.open(`${title} removed from favourites!`, 'Ok', { duration: 4000, panelClass: 'snack-style' });
     }, (result) => {

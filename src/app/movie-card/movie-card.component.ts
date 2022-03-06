@@ -16,7 +16,7 @@ export class MovieCardComponent implements OnInit {
   // userName needed to make the requests to the Api endpoints
   userName = localStorage.getItem('user');
   movies: any[] = [];
-  favorites: any[] = [];
+  favorites: string[] = [];
 
 
   constructor(
@@ -36,7 +36,9 @@ export class MovieCardComponent implements OnInit {
   }
   // Fetches user and sets the value of the favourites property to the favouriteMovies property on the response
   getFavoriteMovies(): void {
-    this.fetchApiData.getUser(this.userName!).subscribe((resp: any) => { this.favorites = resp.FavoriteMovies });
+    this.fetchApiData.getUser(this.userName!).subscribe((resp: any) => { 
+      this.favorites = resp.FavoriteMovies
+     });
   }
 
   // Checks to see if a movie id is included within the array of IDs of the user's fav movies and returns a 
@@ -58,13 +60,12 @@ export class MovieCardComponent implements OnInit {
  
   //Alternative 3
   isFavoriteMovie(movieID: string): boolean {
-    return this.favorites.some((movie) => movie._id === movieID);
+    return this.favorites.some((movie: string) => movie === movieID);
   }
 
   //  Adds or removes a movie from the user's favourites depending on whether the movie is currently included within their favourites or not 
   toggleFavorite(movieID: string, Title: string): void {
-    let movieIds = this.favorites.map(favorite => { return favorite._id });
-    if (movieIds.includes(movieID)) {
+     if (this.favorites.includes(movieID)) {
       this.deleteMovieFromFavorites(movieID, Title);
     } else {
       this.addMovieToFavorites(movieID, Title);

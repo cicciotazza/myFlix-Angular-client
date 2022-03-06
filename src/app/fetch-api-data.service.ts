@@ -59,10 +59,10 @@ export class FetchApiDataService {
   }
 
   // PUT to update the user's details
-  public updateUser(userName: string, newDetails: any): Observable<any> {
+  public updateUser(Username: string, newDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
     // users/${userName}
-    const response = this.http.put(apiUrl + `users/` + userName, newDetails, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
+    const response = this.http.put(apiUrl + `users/` + Username, newDetails, { headers: new HttpHeaders({ Authorization: 'Bearer ' + token, }) });
     return response.pipe(
       map(this.extractResponseData),
       catchError(this.handleError)

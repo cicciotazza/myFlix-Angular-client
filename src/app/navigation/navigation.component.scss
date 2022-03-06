@@ -32,7 +32,7 @@
     //width: 100%;
     //text-align: left;
     //display: inline-block;
-    color: #fdffff;
+    color: #fffdfd;
     background-color: #1a67a2;
     font-size: 18px;
     margin: 0.5rem;
@@ -41,11 +41,14 @@
   }
 
 .title {
-    color: #ff9d00;
+    color: #ff0000;
     font-size: x-large;
     font-weight: bold;
     margin-left: 1rem;
-    font-weight:800;
+    font-weight:1200;
+    -webkit-text-stroke-width: 30%;
+    -webkit-text-stroke-color: rgb(2, 0, 0);
+
 } 
 
 #mobile-menu {

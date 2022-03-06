@@ -3,17 +3,17 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 50px;
-    padding: 100px;
+    padding: 60px;
   }
   
   .mat-card {
-    width: 200px;
-    margin: 20px;
+    width: 218px;
+    margin: 10px;
   }
   
   .mat-card-header {
     text-align: center;
-    height: 70px;
+    height: 60px;
   }
   
   .mat-card-title {
@@ -28,7 +28,9 @@
   }
   
   .mat-card img {
-    margin-left: 9px;
+    height: 22rem;
+    width: 14rem;
+    margin-top: 10px;
   }
   
   .mat-card-actions {

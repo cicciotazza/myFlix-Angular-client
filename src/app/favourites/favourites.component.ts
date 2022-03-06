@@ -59,7 +59,7 @@ export class FavouritesComponent implements OnInit {
 
   deleteFavoriteMovie(movieID: string, title: string): void {
     this.fetchApiData.deleteFavorite(this.userName!, movieID).subscribe((resp: any) => {
-      this.favourites.filter((m: any) => m._id !== movieID);
+      this.favourites = this.favourites.filter((m: any) => m._id !== movieID);
       //users/${userName}/movies/${movieID}
       this.snackBar.open(`${title} removed from favourites!`, 'Ok', { duration: 4000, panelClass: 'snack-style' });
     }, (result) => {

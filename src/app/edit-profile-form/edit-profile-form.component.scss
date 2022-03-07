@@ -6,10 +6,18 @@
     color: #ffffff;
 } 
 
+/**
+ * New default styles applied to the input values populated on the form using autofill. 
+ * These use black text on a white background which looks unsightly  against the application's theme colours.
+ */
 input:-webkit-autofill {
-  -webkit-text-fill-color: #ffffff; // Changes the colour that is otherwise applied when autofill is used
-// The next two rules change the background colour that is otherwise applied when autofill is used. 
-// There is no -webkit-background-color property so box-shadow is used instead which achieves the same result
-  box-shadow: none; // A standard box shadow must be set before setting a webkit-box-shadow
+  // Changes the colour that is otherwise applied when autofill is used
+  -webkit-text-fill-color: #ffffff; 
+  // A standard box shadow must be set before setting a webkit-box-shadow
+  box-shadow: none; 
+   /**
+   * -webkit-box-shadow manipulated to change the background colour because there is no
+   * -webkit-background-color property available and this achieves the same result.
+   */ 
   -webkit-box-shadow: 0 0 0px 1000px #424242 inset;  
 } 

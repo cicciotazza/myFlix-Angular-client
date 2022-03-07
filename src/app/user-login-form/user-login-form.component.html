@@ -5,7 +5,8 @@
     <mat-card-content>
         <form>
             <mat-form-field>
-                <!-- ngModel directive used to bind the form input values entered by the user to the loginData object in the login component -->
+                <!-- ngModel directive used to bind the form input values entered by the user to the loginData object 
+                    in the login component. Tooltips display the validation requirements  -->
                 <input matInput [(ngModel)]="loginData.userName" type="text" placeholder="Username" name="userName" required>
             </mat-form-field>
             <mat-form-field>

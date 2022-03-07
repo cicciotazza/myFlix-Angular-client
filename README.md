@@ -39,6 +39,7 @@ Using Angular, build the client-side for an application called myFlix based on i
     "@angular/router": "~13.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "typedoc": "^0.22.12",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
